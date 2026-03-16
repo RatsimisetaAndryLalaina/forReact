@@ -1,27 +1,30 @@
-import { Article } from '../data/articles';
+import { articleActions } from '../store/article/article';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import type { Article } from '../data/articles';
 
-interface ArticleListProps {
-  articles: Article[];
-  selectedId: number | null;
-  onSelect: (article: Article) => void;
-}
+export default function ArticleList() {
+  const dispatch = useAppDispatch();
+  const { articlesList, currentSelectedArticle } = useAppSelector((state) => ({
+    articlesList: state.article.articlesList,
+    currentSelectedArticle: state.article.currentSelectedArticle,
+  }));
 
-export default function ArticleList({
-  articles,
-  selectedId,
-  onSelect,
-}: ArticleListProps) {
+  const handleArticleSelect = (article: Article) => {
+    dispatch(articleActions.setCurrentSelectedArticle(article));
+    dispatch(articleActions.setCurrentSelectedTitle(article.title));
+  };
+
   return (
     <div className="article-list">
-      <h2>Current article</h2>
+      <h2>Latest news</h2>
       <div className="articles-container">
-        {articles.map((article) => (
+        {articlesList.map((article: Article) => (
           <div
             key={article.id}
             className={`article-item ${
-              selectedId === article.id ? 'selected' : ''
+              currentSelectedArticle?.id === article.id ? 'selected' : ''
             }`}
-            onClick={() => onSelect(article)}
+            onClick={() => handleArticleSelect(article)}
           >
             {article.title}
           </div>

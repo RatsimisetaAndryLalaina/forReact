@@ -1,24 +1,23 @@
-import { Article } from '../data/articles';
+import { useAppSelector } from "../store/hooks";
 
-interface ArticleDetailProps {
-  article: Article | null;
-}
-
-export default function ArticleDetail({ article }: ArticleDetailProps) {
-  if (!article) {
+export default function ArticleDetail() {
+  const currentSelectedArticle = useAppSelector((state) => state.article.currentSelectedArticle);
+  
+  if (!currentSelectedArticle) {
     return (
-      <div className="article-detail empty">
-        <p>Select an article to view details</p>
+      <div className="article-detail">
+        <h1>No article selected</h1>
+        <p>Please select an article from the list to view its details.</p>
       </div>
     );
   }
 
   return (
     <div className="article-detail">
-      <h1>{article.title}</h1>
-      <p className="article-meta">{article.date}</p>
+      <h1>{currentSelectedArticle.title}</h1>
+      <p className="article-meta">{currentSelectedArticle.date}</p>
       <div className="article-content">
-        {article.content.split('\n\n').map((paragraph, index) => (
+        {currentSelectedArticle.content.split('\n\n').map((paragraph, index) => (
           <p key={index}>{paragraph}</p>
         ))}
       </div>
