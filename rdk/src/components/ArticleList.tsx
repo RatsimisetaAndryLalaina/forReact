@@ -1,11 +1,16 @@
-import { articleActions } from '../store/article/article';
+import { articleActions, fetchArticles } from '../store/article/article';
 import type { Article } from '../data/articles';
 import { useDispatch, useSelector } from 'react-redux';
 import type { ArticleState } from '../store/article/article';
+import { useEffect } from 'react';
 
 export default function ArticleList() {
   const dispatch = useDispatch();
   const articlesList = useSelector(({ article }: { article: ArticleState}): Article[] => article.articlesList);
+
+  useEffect(() => {
+    dispatch(fetchArticles());
+  }, [dispatch]);
 
   const handleArticleSelect = (article: Article) => {
     dispatch(articleActions.setCurrentSelectedArticle(article));
