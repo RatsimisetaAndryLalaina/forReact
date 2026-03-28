@@ -1,7 +1,8 @@
-import { useAppSelector } from "../store/hooks";
+import { useSelector } from "react-redux";
+import type { ArticleState } from '../store/article/article';
 
 export default function ArticleDetail() {
-  const currentSelectedArticle = useAppSelector((state) => state.article.currentSelectedArticle);
+  const currentSelectedArticle = useSelector(({ article }: { article: ArticleState }) => article.currentSelectedArticle);
   
   if (!currentSelectedArticle) {
     return (

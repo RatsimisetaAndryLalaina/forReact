@@ -1,13 +1,11 @@
 import { articleActions } from '../store/article/article';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
 import type { Article } from '../data/articles';
+import { useDispatch, useSelector } from 'react-redux';
+import type { ArticleState } from '../store/article/article';
 
 export default function ArticleList() {
-  const dispatch = useAppDispatch();
-  const { articlesList, currentSelectedArticle } = useAppSelector((state) => ({
-    articlesList: state.article.articlesList,
-    currentSelectedArticle: state.article.currentSelectedArticle,
-  }));
+  const dispatch = useDispatch();
+  const articlesList = useSelector(({ article }: { article: ArticleState}): Article[] => article.articlesList);
 
   const handleArticleSelect = (article: Article) => {
     dispatch(articleActions.setCurrentSelectedArticle(article));
@@ -16,20 +14,14 @@ export default function ArticleList() {
 
   return (
     <div className="article-list">
-      <h2>Latest news</h2>
-      <div className="articles-container">
-        {articlesList.map((article: Article) => (
-          <div
-            key={article.id}
-            className={`article-item ${
-              currentSelectedArticle?.id === article.id ? 'selected' : ''
-            }`}
-            onClick={() => handleArticleSelect(article)}
-          >
-            {article.title}
-          </div>
+      <h2>Articles</h2>
+      <ul>
+        {articlesList.map((article) => (
+          <li key={article.id} onClick={() => handleArticleSelect(article)}>
+            {article.title} - <span className="article-date">{article.date}</span>
+          </li>
         ))}
-      </div>
+      </ul>     
     </div>
   );
 }
