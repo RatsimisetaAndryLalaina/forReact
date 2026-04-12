@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router';
 
 const Contact: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -26,6 +27,7 @@ const Contact: React.FC = () => {
     return (
         <div className="contact-container">
             <h1>Contact Us</h1>
+            or go to about <Link to="/">Go to about</Link>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const About = () => {
     return (
         <div className="about-container">
-            <h1>About <Link to="/contact">Go to contact</Link> </h1>
+            <h1><Link to="/contact">Go to contact</Link> </h1>
             <p>This is the About page.</p>
             <section>
                 <h2>Our Mission</h2>
