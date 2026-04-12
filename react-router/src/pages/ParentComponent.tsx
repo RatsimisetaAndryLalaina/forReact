@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
+import NavBar from "./NavBar";
 function ParentComponent() {
   return (
     <div>
-      <h1>Parent Component</h1>
+      <NavBar />
         <Outlet />
     </div>
   );
