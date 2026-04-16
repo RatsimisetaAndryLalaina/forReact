@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import style from './Root.module.css';
 
 const handleActivatedNavLink = ({ isActive }: { isActive: boolean }) => {
-    console.log('style', style);
     return isActive ? style.currentactive : undefined;
 };
 
@@ -15,6 +14,9 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink className={handleActivatedNavLink} to="/contact" end>Contact</NavLink>
+                </li>
+                <li>
+                    <NavLink className={handleActivatedNavLink} to="/product" end>Product</NavLink>
                 </li>
             </ul>
         </nav>
