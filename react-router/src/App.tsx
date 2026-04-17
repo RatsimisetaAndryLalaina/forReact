@@ -4,8 +4,9 @@ import About from './pages/About';
 import Contact from './pages/Contact';  
 import ParentComponent from './pages/ParentComponent';
 import NotFound from './pages/NotFound';
-import Product, { ProductLoader } from './pages/Product';
+import Product, { loadProduct } from './pages/Product';
 import ProductDetails from './pages/ProductDetails';
+import ProductError from './pages/ProductError';
 
 const router = createBrowserRouter([
   { 
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <About/> },
       { path: '/contact', element: <Contact/> },
-      { path: '/product', element: <Product/> , loader: ProductLoader },
+      { path: '/product', element: <Product/> , loader: loadProduct, errorElement: <ProductError/>},
       { path: '/product/:id', element: <ProductDetails/> },
     ]
   }
