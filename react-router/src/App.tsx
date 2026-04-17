@@ -15,7 +15,14 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <About/> },
       { path: '/contact', element: <Contact/> },
-      { path: '/product', element: <Product/> },
+      { path: '/product', element: <Product/> , loader: () => 
+        [
+          { id: 1, name: "Laptop", price: 999.99 },
+          { id: 2, name: "Smartphone", price: 699.99 },
+          { id: 3, name: "Tablet", price: 449.99 },
+          { id: 4, name: "Headphones", price: 199.99 },
+        ]
+      },
       { path: '/product/:id', element: <ProductDetails/> },
     ]
   }
