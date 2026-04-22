@@ -1,3 +1,5 @@
+import { redirect } from "react-router";
+
 export default  async function contactAction({request, params}: {request: Request, params: unknown}) {
     const data = await request.formData();
 
@@ -9,4 +11,6 @@ export default  async function contactAction({request, params}: {request: Reques
 
     console.log('response from contact action', response);
     console.log('params from contact action', params);
+
+    return redirect('/'); // Redirect to the home page after form submission
 }
