@@ -1,39 +1,31 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
 
 interface ProductType {
     id: number;
-    name: string;
-    price: number;
+    url: string;
+    width: number;
+    height: number;
 }
 
 function Product() {
+    const navigation = useNavigation();
+    console.log('from product component', navigation.state);
     const products = useLoaderData() as ProductType[];
     return (
         <div>
             <h1>Product Page</h1>
-            <ul>
+            {navigation.state === "loading" ? <p>Loading...</p> : <ul>
                 {products.map((product) => (
                     <li key={product.id}>
                     <Link key={product.id} to={`/product/${product.id}`}>
-                        {product.name} - ${product.price}
+                        <img src={product.url} width={250} height={150} alt="" />
                     </Link>
                     </li>
                 ))}
-            </ul>
+            </ul>} 
+            
         </div>
     );
 };
 
 export default Product;
-
-
-export function  loadProduct() {
-    throw { message: "failed to load the result", status: 500 };
-    return [
-        { id: 1, name: "Laptop", price: 100.99 },
-        { id: 2, name: "Smartphone", price: 699.99 },
-        { id: 3, name: "Tablet", price: 449.99 },
-        { id: 4, name: "Headphones", price: 200.99 },
-        { id: 5, name: "Watc", price: 479.99 },
-    ];
-};

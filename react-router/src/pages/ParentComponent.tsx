@@ -5,7 +5,7 @@ import NavBar from "./NavBar";
 function ParentComponent() {
   const {state}: {state:string} = useNavigation();
   //state can be "idle", "loading", "submitting"
-  console.log(state);
+  console.log('from parent component',state);
   
   return (
     <div>

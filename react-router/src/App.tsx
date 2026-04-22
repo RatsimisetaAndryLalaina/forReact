@@ -4,9 +4,10 @@ import About from './pages/About';
 import Contact from './pages/Contact';  
 import ParentComponent from './pages/ParentComponent';
 import NotFound from './pages/NotFound';
-import Product, { loadProduct } from './pages/Product';
+import Product from './pages/Product';
 import ProductDetails from './pages/ProductDetails';
 import ProductError from './pages/ProductError';
+import { loadProduct } from './pages/Loader/loaderProduct';
 
 const router = createBrowserRouter([
   { 
