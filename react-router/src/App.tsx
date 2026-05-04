@@ -9,6 +9,8 @@ import ProductDetails from './pages/ProductDetails';
 import ProductError from './pages/ProductError';
 import { loadProduct } from './pages/Loader/loaderProduct';
 import contactAction from './pages/Action/contactAction';
+import PageDeferred from './pages/PageDeferred';
+import load from './pages/Loader/loadPageDeferred';
 
 const router = createBrowserRouter([
   { 
@@ -19,6 +21,7 @@ const router = createBrowserRouter([
       { path: '/', element: <About/> },
       { path: '/contact', element: <Contact/>, action: contactAction },
       { path: '/product', element: <Product/> , loader: loadProduct, errorElement: <ProductError/>},
+      { path: '/defer', element: <PageDeferred/>, loader: load },
       { path: '/product/:id', element: <ProductDetails/> },
     ]
   }

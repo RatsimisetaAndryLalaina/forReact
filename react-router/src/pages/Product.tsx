@@ -1,6 +1,6 @@
-import { Link, useActionData, useLoaderData, useNavigation } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
 
-interface ProductType {
+export interface ProductType {
     id: number;
     url: string;
     width: number;
@@ -15,7 +15,7 @@ function Product() {
     const products = useLoaderData() as ProductType[];
     return (
         <div>
-            <h1>Product Page</h1>
+            hello
             {navigation.state === "loading" ? <p>Loading...</p> : <ul>
                 {products.map((product) => (
                     <li key={product.id}>

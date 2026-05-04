@@ -18,6 +18,9 @@ const NavBar = () => {
                 <li>
                     <NavLink className={handleActivatedNavLink} to="/product" end>Product</NavLink>
                 </li>
+                <li>
+                    <NavLink className={handleActivatedNavLink} to="/defer" end>Defer</NavLink>
+                </li>
             </ul>
         </nav>
     );

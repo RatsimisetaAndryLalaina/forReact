@@ -10,7 +10,7 @@ function ParentComponent() {
   return (
     <div>
       <NavBar />
-      {state === "loading" && <p>Loading...</p>}
+      {state === "loading" && <p>Parent Loading...</p>}
         <Outlet />
     </div>
   );
