@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import useFetchAllQuotes from '../../hooks/useFetchAllQuotes';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#ffffff',
@@ -15,12 +16,18 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function AllQuotes() {
+  const {data, isPending, isError, error} = useFetchAllQuotes();
+  
   return (
     <Box sx={{ width: '100%' }}>
       <Stack spacing={5}>
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
+        {isPending && <Item>Loading...</Item>}
+        {isError && <Item>Error: {error?.message}</Item>}
+        {data?.quotes && data.quotes.map((quote: {id: number, author: string, quote: string}) => (
+          <Item key={quote.id}>
+            <strong>{quote.author}:</strong> {quote.quote}
+          </Item>
+        ))}
       </Stack>
     </Box>
   );
