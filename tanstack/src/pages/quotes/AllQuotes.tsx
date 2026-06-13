@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import useFetchAllQuotes from '../../hooks/useFetchAllQuotes';
+import RefreshQuotes from '../form/RefreshQuotes';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#ffffff',
@@ -20,6 +21,9 @@ export default function AllQuotes() {
   
   return (
     <Box sx={{ width: '100%' }}>
+      <Stack spacing={2} sx={{ width: '100%' }}>
+        <RefreshQuotes />
+        </Stack>
       <Stack spacing={5}>
         {isPending && <Item>Loading...</Item>}
         {isError && <Item>Error: {error?.message}</Item>}
